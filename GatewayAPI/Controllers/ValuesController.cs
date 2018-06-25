@@ -26,7 +26,19 @@ namespace GatewayAPI.Controllers
         public void Post([FromBody]LoRaMessage value)
         {
             System.Diagnostics.Debug.WriteLine(value.data);
-            InsertRecord(value.deveui, value.data);
+
+            switch(value.deveui)
+            {
+                case "mfpricestempandsoileui":
+                    ParseTempAndSoilCayennePacket(value.deveui, value.data);
+                    break;
+                case "mfpricewaterlevelsensor":
+                    ParseRiverCayennePacket(value.deveui, value.data);
+                    break;
+                default:
+                    InsertRecord(value.deveui, value.data);
+                    break;
+            }
 
         }
 

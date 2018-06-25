@@ -75,7 +75,7 @@ namespace GatewayAPI.Controllers
                         {
                             while (reader.Read())
                             {
-                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                                //Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
                             }
                         }
                     }
@@ -115,7 +115,51 @@ namespace GatewayAPI.Controllers
                         {
                             while (reader.Read())
                             {
-                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                                //Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            return true;
+        }
+
+
+        bool InsertFosterRecord(string eui, float temp, float humid, float pressure)
+        {
+            try
+            {
+
+
+                string connectionstring = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\paul\\OneDrive\\Documents\\testdb.mdf;Integrated Security=True;Connect Timeout=30";
+
+
+                using (SqlConnection connection = new SqlConnection(connectionstring))
+                {
+                    connection.Open();
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("insert into payloadforfoster (deveui,temp,mositure,humid) values ('");
+                    sb.Append(eui);
+                    sb.Append("','");
+                    sb.Append(temp.ToString());
+                    sb.Append("','");
+                    sb.Append(humid.ToString());
+                    sb.Append("','");
+                    sb.Append(pressure.ToString());
+                    sb.Append("')");
+                    String sql = sb.ToString();
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
                             }
                         }
                     }

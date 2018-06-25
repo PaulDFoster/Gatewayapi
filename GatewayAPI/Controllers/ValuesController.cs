@@ -35,6 +35,9 @@ namespace GatewayAPI.Controllers
                 case "mfpricewaterlevelsensor":
                     ParseRiverCayennePacket(value.deveui, value.data);
                     break;
+                case "paulfoeui":
+                    ParseFosterPacket(value.deveui, value.data);
+                    break;
                 default:
                     InsertRecord(value.deveui, value.data);
                     break;

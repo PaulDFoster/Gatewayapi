@@ -30,14 +30,18 @@ namespace GatewayAPI.Controllers
                 {
                     case 2:
                     case 3:
-                        short value = BitConverter.ToInt16(asBytes, byteIndex);
+                        var _msb = asBytes[byteIndex];
+                        var _lsb = asBytes[byteIndex + 1];
+                        short value2 = BitConverter.ToInt16(new byte[] { _lsb, _msb }, 0);
                         byteIndex += 2;
-                        moisture = value * 0.01f;
+                        moisture = value2 * 0.01f;
                         break;
                     case 103:
-                        short value2 = BitConverter.ToInt16(asBytes, byteIndex);
+                        var msb = asBytes[byteIndex];
+                        var lsb = asBytes[byteIndex + 1];
+                        short value = BitConverter.ToInt16(new byte[] { lsb, msb }, 0);
                         byteIndex += 2;
-                        temp = value2 * 0.01f;
+                        temp = value * 0.1f;
                         break;                    
                 }
             }
@@ -66,7 +70,9 @@ namespace GatewayAPI.Controllers
                 {
                     case 2:
                     case 3:
-                        short value = BitConverter.ToInt16(asBytes, byteIndex);
+                        var msb = asBytes[byteIndex];
+                        var lsb = asBytes[byteIndex + 1];
+                        short value = BitConverter.ToInt16(new byte[] { lsb, msb }, 0);
                         byteIndex += 2;
                         waterlevel = value * 0.01f;
                         break;

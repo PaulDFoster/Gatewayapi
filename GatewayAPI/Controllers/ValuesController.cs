@@ -29,10 +29,10 @@ namespace GatewayAPI.Controllers
 
             switch(value.deveui)
             {
-                case "mfpricestempandsoileui":
+                case "00:9D:5D:65:B2:3C:03:CF":
                     ParseTempAndSoilCayennePacket(value.deveui, value.data);
                     break;
-                case "mfpricewaterlevelsensor":
+                case "009D5D65B23C03CF"://still need second dev eui
                     ParseRiverCayennePacket(value.deveui, value.data);
                     break;
                 case "paulfoeui":

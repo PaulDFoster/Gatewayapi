@@ -100,7 +100,7 @@ namespace GatewayAPI.Controllers
                 {
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("insert into payloadforwater (deveui,temp,soil) values ('");
+                    sb.Append("insert into payloadfortemp (deveui,temp,soil) values ('");
                     sb.Append(eui);
                     sb.Append("','");
                     sb.Append(temp.ToString());

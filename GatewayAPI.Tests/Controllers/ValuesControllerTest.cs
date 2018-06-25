@@ -68,6 +68,29 @@ namespace GatewayAPI.Tests.Controllers
         }
 
         [TestMethod]
+        public void tempAndSoilMFPrice()
+        {
+            GatewayAPI.Models.LoRaMessage lm = new Models.LoRaMessage();
+            lm.chan = 5;
+            lm.codr = "4/5";
+            lm.datr = "SF7BW125";
+            lm.deveui = "00:9D:5D:65:B2:3C:03:CF";
+            lm.freq = 903.3;
+            lm.lsnr = 85;
+            lm.modu = "LORA";
+            lm.data = "AQIZAAJnAOk=";
+            lm.rfch = 1;
+            lm.rssi = -55;
+            lm.size = 12;
+            lm.time = "2018-06-14T16:11:58.751059Z";
+            lm.tmst = 67346764;
+
+            // Arrange
+            ValuesController controller = new ValuesController();
+            controller.Post(lm);
+        }
+
+        [TestMethod]
         public void Put()
         {
             // Arrange
